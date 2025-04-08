@@ -4,19 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AltOS</title>
-    <!-- Lien vers le CSS -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Lien vers le manifest JSON -->
-    <link rel="manifest" href="manifest.json"> 
-
-
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-    <!-- Bureau -->
     <div id="desktop"></div>
 
-    <!-- Modal du Launcher -->
     <div id="launcher-modal" class="hidden">
         <div class="modal-content">
             <button id="close-launcher">&times;</button>
@@ -25,16 +19,21 @@
         </div>
     </div>
 
-    <!-- Barre des tâches -->
     <div id="taskbar">
         <div id="taskbar-icons">
             <img src="./assets/logo.png" id="launcher-btn" alt="Launcher" data-title="Lancer AltOS">
             <img src="./assets/terminal-logo.png" id="terminal-btn" alt="Terminal" data-title="Ouvrir le terminal">
+            <img
+                src="./assets/ven-editor.png"
+                alt="Ven"
+                id="ven-btn"
+                data-title="Ouvrir le ven"
+                style="width: 40px; height: 40px; z-index: 9999; position: relative; cursor: pointer; background-color: red;"
+                >
         </div>
     </div>
 
-    <!-- Fenêtre du Terminal -->
-    <div id="terminal" class="hidden">
+    <div id="terminal" style="display: none;">
         <div class="terminal-header">
             <h3>Terminal</h3>
             <button id="close-terminal">&times;</button>
@@ -45,14 +44,41 @@
         <input type="text" id="terminal-input" placeholder="Entrez une commande..." />
     </div>
 
+    <div id="ven" style="display: none; flex-direction: column; width: 600px; height: 400px; background-color: #1e1e1e; color: white; border: 1px solid #333; border-radius: 8px; overflow: hidden;">
+        <div class="terminal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #333;">
+            <h3 style="margin: 0; font-size: 16px;">Ven (Text-Editor)</h3>
+            <button id="closeVen" style="background-color: #ff5c5c; width: 20px; height: 20px; border: none; border-radius: 50%; cursor: pointer;">&times;</button> </div>
+        <textarea id="venEditor" style="flex: 1; background-color: #1e1e1e; color: white; border: none; padding: 10px; font-family: monospace; font-size: 14px; resize: none;"></textarea>
+    </div>
+
     <script src="script.js"></script>
     <script src="terminal.js"></script>
     <script>
         if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/service-worker.js")
-          .then(() => console.log("Service Worker enregistré !"))
-          .catch((err) => console.log("Erreur Service Worker :", err));
-      }
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(() => console.log("Service Worker enregistré !"))
+                .catch((err) => console.log("Erreur Service Worker :", err));
+        }
+        const venBtn = document.getElementById("ven-btn"); // Récupérer le bouton Ven
+     
+    const closeVenBtn = document.getElementById("closeVen");
+         // Fonction pour afficher la fenêtre Ven
+    function openVenEditor() {
+        console.log("Ouverture de Ven"); // Vérifie dans la console
+        ven.style.display = "block";
+    }
+
+    // Fonction pour cacher la fenêtre Ven
+    function closeVenEditor() {
+        console.log("Fermeture de Ven"); // Vérifie dans la console
+        ven.style.display = "none";
+    }
+
+    // Ajouter un gestionnaire d'événements au bouton Ven (optionnel mais recommandé)
+    venBtn?.addEventListener("click", openVenEditor);
+
+    // Les gestionnaires onclick sont déjà dans le HTML, mais si vous préférez les gérer ici :
+    closeVenBtn?.addEventListener("click", closeVenEditor);
     </script>
 </body>
 </html>

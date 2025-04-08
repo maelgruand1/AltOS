@@ -1,0 +1,16 @@
+{
+    "name": "altos",
+    "version": "1.0.0",
+    "description": "Système d'exploitation cloud développé par Maël Gruand.",
+    "main": "index.html",
+    "scripts": {
+      "start": "live-server --open=./index.html",
+      "build": "echo 'Pas de build requis pour HTML/JS natif.'"
+    },
+    "author": "Maël Gruand",
+    "license": "MIT",
+    "devDependencies": {
+      "live-server": "^1.2.2"
+    }
+}
+

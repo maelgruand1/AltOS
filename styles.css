@@ -54,6 +54,7 @@ body {
     position: relative;
 }
 
+
 /* Affichage du texte au survol des icônes */
 .task-icon::after,
 #launcher-btn::after {
